@@ -31,7 +31,7 @@ app.get('/', (req,res) => {
 });
 
 app.post('/save-day', (req,res) => { 
-    /* MAKE SURE TO CHECK THAT YOU AREN'T SAVING A DUPLICATE DAY! */
+  
     res.header("Access-Control-Allow-Origin", "*");
     res.header(
         "Access-Control-Allow-Headers",
