@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>healthyMe</title>
+    <!-- js-cookie  -->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
 </head>
 <body>
     <h3>healthyMe</h3>
@@ -22,6 +24,11 @@
     </div>
 
     <script>
+        let day = {
+            date:new Date(),
+            calories:0,
+            water:0,
+        };
         let totalDailyCalories = document.querySelector('#totalDailyCalories');
         let inputCalories = document.querySelector('#inputCalories');
         let addCaloriesBtn = document.querySelector('#addCaloriesBtn');
@@ -34,13 +41,111 @@
             let current = Number(totalDailyCalories.innerText);
             totalDailyCalories.innerText = current + input;
             inputCalories.value = '';
+            // UPDATE COOKIE 
         };
         addWaterBtn.onclick = () =>{
             let input = Number(inputWater.value);
             let current = Number(totalDailyWater.innerText);
             totalDailyWater.innerText = current + input;
             inputWater.value = '';
+            // UPDATE COOKIE 
         };
+        const isCookieOld = (cookie) => {
+            // num of milliseconds in a day 86400000 
+            let cur = new Date();
+            let cookieDate = cookie.date;
+            console.log('~~~~~~~~~~~~~~~~~~~~~~~~');
+            console.log('testing if cookie is old \n');
+            console.log(`cur:\t\t\t ${cur}`);
+            console.log(`cookieDate:\t\t ${cookieDate}`);
+            // if the date was stored as a string and cannot be easily be parsed back because javascript is evil choas that took over the world
+            if( typeof(cookieDate) == "string" ){
+                cur = cur.getTime();
+                cookieDate = Date.parse(cookieDate);
+                console.log(`cur:\t\t\t ${cur}`);
+                console.log(`cookieDate:\t\t ${cookieDate}`);
+                console.log(`diff:\t\t ${Math.abs(cookieDate - cur)} >= 86400000 -> ${Math.abs(cookieDate - cur) >= 86400000}`);
+                return Math.abs(cookieDate - cur) >= 86400000; 
+            }
+            console.log('~~~~~~~~~~~~~~~~~~~~~~~~ \n');
+            return( cur.getDate() != cookieDate.getDate() 
+                || cur.getMonth() != cookieDate.getMonth()
+                || cur.getYear() != cookieDate.getYear());
+        };
+        const checkCookie = () => {
+            /* Checking if cookie is current.
+            if old then send to backend and update with current data and 0s
+             */
+            console.log('~~~~~~~~~~~~~~~~~~~~~~~~');
+            console.log('checkCookie  \n');
+            let cookie = Cookies.get('healthyMe');
+            console.log(`cookie:\t\t\t ${JSON.stringify(cookie)}`);
+            // checking if our day object is over a day old 
+            if(isCookieOld(day)){
+                // send day to back end to be saved and reset it
+                console.log('day object is old reached');
+                // SEND IT!
+                // reset it  
+                day = {
+                    date:new Date(),
+                    calories:0,
+                    water:0,
+                };
+            }
+            // check if cookie exists
+            try{
+                cookie = JSON.parse(cookie);
+            }
+            catch(error){
+                console.log('error with cookie');
+                if( cookie == undefined){
+                    console.log('cookie underfined reached');
+                }
+                // update cookie to local day object 
+            }
+            // check date on cookie 
+            if(isCookieOld(cookie)){
+                // send cookie to back end to be saved and set it to day object
+                console.log('cookie is old reached');
+            }
+            console.log('~~~~~~~~~~~~~~~~~~~~~~~~ \n');
+        };
+        const populateData = () => {
+            /* Populating ui with data from cookie
+            checkCookie
+             if data object is not set then set data object to cookie
+             populate ui counts to appropriate data object attributes
+             */
+            checkCookie();
+        };
+        const updateCookie = () => {
+            /* Updating cookie
+            checkCookie
+            if data object is set then update data object and set cookie to object
+            else update data object and  set cookie to data object and 
+             */
+             checkCookie();
+        };
+        // console.log(Cookies.get('test'));
+        // console.log(day);
+        window.onload = () => {
+             console.log('window loaded');
+             checkCookie();
+        };
+        /* 
+        So here is basically how the app will work:
+        1. check if there is a healthyMe cookie
+        2. if the cookie is less than a day old 
+            - set current counts to ui and update cookie when updates are applied
+        3. else submit the cookie data to backend to be saved then
+            - reset cookie
+        What the cookie will look like:
+        healthyMe = {
+            date = (the date),
+            calories = calorie count,
+            water = water count
+        }
+         */
     </script>
 </body>
 </html>

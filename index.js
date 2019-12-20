@@ -1,6 +1,12 @@
 const express = require('express');
 const app = express();
 const port = 8080;
+/* 
+MAKE SURE YOU DO NOT SAVE A DAY DUPLICATE TIMES!!!
+if the cookie you are trying to save is already saved then
+simply don't save it
+bc that means that the day object was sent to be send and it more accurate than cookie because it is updated during every interaction (unlike the cookie)
+*/
 
 app.get('/', (req,res) => {
     res.header("Access-Control-Allow-Origin", "*");
