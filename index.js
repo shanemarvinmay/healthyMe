@@ -12,8 +12,11 @@ app.get('/', (req,res) => {
     res.sendFile(pathToFile);
 });
 
-app.post('/saveEntries', (req,res) => { 
-    
+app.post('/update-daily-calories', (req,res) => { 
+    res.send('update-daily-calories reached');
+});
+app.post('/update-daily-water', (req,res) => { 
+    res.send('update-daily-water reached');
 });
 
 app.listen(port, ()=> {console.log(`local journal running on ${port}`);});
