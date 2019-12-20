@@ -18,11 +18,20 @@ app.get('/', (req,res) => {
     res.sendFile(pathToFile);
 });
 
-app.post('/update-daily-calories', (req,res) => { 
-    res.send('update-daily-calories reached');
+app.post('/save-day', (req,res) => { 
+    /* MAKE SURE TO CHECK THAT YOU AREN'T SAVING A DUPLICATE DAY! */
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+      );
+    console.log("POST /save-day hit"); 
+    console.log(req.query);
+    // parse the date of incoming day 
+    // check for day in db to make sure you aren't saving a duplicate day 
+    // save day in db (if it is not a duplicate) 
+    res.send(req.query);
 });
-app.post('/update-daily-water', (req,res) => { 
-    res.send('update-daily-water reached');
-});
+
 
 app.listen(port, ()=> {console.log(`local journal running on ${port}`);});

@@ -41,14 +41,40 @@
             let current = Number(totalDailyCalories.innerText);
             totalDailyCalories.innerText = current + input;
             inputCalories.value = '';
-            // UPDATE COOKIE 
+            // UPDATE DAY AND COOKIE 
         };
         addWaterBtn.onclick = () =>{
             let input = Number(inputWater.value);
             let current = Number(totalDailyWater.innerText);
             totalDailyWater.innerText = current + input;
             inputWater.value = '';
-            // UPDATE COOKIE 
+            // UPDATE DAY AND COOKIE 
+        };
+        
+        const getDay = () =>{
+            /* Returning day object because it you just assign it, the date gets all messed up */
+            let temp = day;
+            temp.date = temp.date.toString();
+            return temp;
+        }
+        const getSaveDayParams = (day) => {
+            let temp = day;
+            temp.date = temp.date.toString();
+            return `day=${JSON.stringify(temp)}`;
+        };
+        const saveDay = (day) =>{
+            /* Saving the cookie and the day by sending it to the backend */
+            const params = getSaveDayParams(day);
+            console.log('~~~~~~~~~~~~~~~~~~~~~~~~');
+            console.log('saveDay \n');
+            console.log(`params:\t\t\t ${params}`);
+            let xhr = new XMLHttpRequest;
+            xhr.open('POST', `http://localhost:8080/save-day?${params}`);
+            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+            xhr.setRequestHeader("Access-Control-Allow-Origin", "Origin, X-Requested-With, Content-Type, Accept");
+            xhr.onreadystatechange = function() { if (xhr.readyState>3 && xhr.status==200) { console.log(xhr.responseText); } };
+            xhr.send('ZzzZZZZ');
+            console.log('~~~~~~~~~~~~~~~~~~~~~~~~');
         };
         const isCookieOld = (cookie) => {
             // num of milliseconds in a day 86400000 
@@ -83,30 +109,43 @@
             // checking if our day object is over a day old 
             if(isCookieOld(day)){
                 // send day to back end to be saved and reset it
-                console.log('day object is old reached');
-                // SEND IT!
+                console.error('day object is old');
+                // send it
+                saveDay(day);
                 // reset it  
                 day = {
                     date:new Date(),
                     calories:0,
                     water:0,
                 };
+                console.log(`day: ${JSON.stringify(day)}`);
             }
             // check if cookie exists
             try{
                 cookie = JSON.parse(cookie);
             }
             catch(error){
-                console.log('error with cookie');
+                console.error('error with cookie');
                 if( cookie == undefined){
-                    console.log('cookie underfined reached');
+                    console.error('cookie underfined');
                 }
                 // update cookie to local day object 
+                cookie = getDay();
+                // save cookie locally
+                updateCookie();
+                console.log(`cookie: ${JSON.stringify(cookie)}`);
             }
             // check date on cookie 
             if(isCookieOld(cookie)){
-                // send cookie to back end to be saved and set it to day object
-                console.log('cookie is old reached');
+                // send cookie to back end to be saved and set it to day object and save the cookie locally
+                console.error('cookie is old');
+                // send it 
+                saveDay(cookie);
+                // reset it  
+                cookie = getDay();
+                // save cookie locally 
+                updateCookie();
+                console.log(`cookie: ${JSON.stringify(cookie)}`);
             }
             console.log('~~~~~~~~~~~~~~~~~~~~~~~~ \n');
         };
@@ -120,11 +159,10 @@
         };
         const updateCookie = () => {
             /* Updating cookie
-            checkCookie
-            if data object is set then update data object and set cookie to object
-            else update data object and  set cookie to data object and 
+            use day object to update local cookie 
              */
-             checkCookie();
+            let str = JSON.stringify( getDay() );
+            Cookies.set('healthyMe',str);
         };
         // console.log(Cookies.get('test'));
         // console.log(day);
