@@ -109,20 +109,7 @@
             console.log('checkCookie  \n');
             let cookie = Cookies.get('healthyMe');
             console.log(`cookie:\t\t\t ${JSON.stringify(cookie)}`);
-            // checking if our day object is over a day old 
-            if(isCookieOld(day)){
-                // send day to back end to be saved and reset it
-                console.error('day object is old');
-                // send it
-                saveDay(day);
-                // reset it  
-                day = {
-                    date:new Date(),
-                    calories:0,
-                    water:0,
-                };
-                console.log(`day: ${JSON.stringify(day)}`);
-            }
+            
             // check if cookie exists
             try{
                 cookie = JSON.parse(cookie);
@@ -149,6 +136,20 @@
                 // save cookie locally 
                 updateCookie();
                 console.log(`cookie: ${JSON.stringify(cookie)}`);
+            }
+            // checking if our day object is over a day old 
+            if(isCookieOld(day)){
+                // send day to back end to be saved and reset it
+                console.error('day object is old');
+                // send it
+                saveDay(day);
+                // reset it  
+                day = {
+                    date:new Date(),
+                    calories:0,
+                    water:0,
+                };
+                console.log(`day: ${JSON.stringify(day)}`);
             }
             console.log('~~~~~~~~~~~~~~~~~~~~~~~~ \n');
         };
