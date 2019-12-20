@@ -1,0 +1,20 @@
+{
+  "shane_days": [
+    {
+      "date": "2019-12-01T16:24:57.000Z",
+      "calories": 0,
+      "water": 0
+    },
+    {
+      "date": "2019-12-02T16:45:01.000Z",
+      "calories": 0,
+      "water": 0
+    },
+    {
+      "date": "Tue Dec 03 2019 10:45:38 GMT-0600 (Central Standard Time)",
+      "calories": 123,
+      "water": 321
+    }
+  ],
+  "otherInfo": {}
+}
