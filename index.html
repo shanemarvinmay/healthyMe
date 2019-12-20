@@ -41,16 +41,19 @@
             let current = Number(totalDailyCalories.innerText);
             totalDailyCalories.innerText = current + input;
             inputCalories.value = '';
-            // UPDATE DAY AND COOKIE 
+            // update day and cookie
+            day.calories = current + input;
+            updateCookie();
         };
         addWaterBtn.onclick = () =>{
             let input = Number(inputWater.value);
             let current = Number(totalDailyWater.innerText);
             totalDailyWater.innerText = current + input;
             inputWater.value = '';
-            // UPDATE DAY AND COOKIE 
+            // update day and cookie
+            day.water = current + input;
+            updateCookie(); 
         };
-        
         const getDay = () =>{
             /* Returning day object because it you just assign it, the date gets all messed up */
             let temp = day;
@@ -152,10 +155,22 @@
         const populateData = () => {
             /* Populating ui with data from cookie
             checkCookie
-             if data object is not set then set data object to cookie
+             if cookie counts > day counts then set ui to cookie
+             else set ui to day
              populate ui counts to appropriate data object attributes
              */
             checkCookie();
+            let cookie = Cookies.get('healthyMe');
+            cookie = JSON.parse(cookie);
+            let data = {};
+            if( cookie.calories > day.calories || cookie.water > day.water){
+                data = cookie;
+            }
+            else{
+                data = day;
+            }
+            totalDailyCalories.innerText = data.calories;
+            totalDailyWater.innerText = data.water;
         };
         const updateCookie = () => {
             /* Updating cookie
@@ -163,9 +178,7 @@
              */
             let str = JSON.stringify( getDay() );
             Cookies.set('healthyMe',str);
-        };
-        // console.log(Cookies.get('test'));
-        // console.log(day);
+        };     
         window.onload = () => {
              console.log('window loaded');
              checkCookie();
