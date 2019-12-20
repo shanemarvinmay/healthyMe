@@ -9,14 +9,38 @@
 <body>
     <h3>healthyMe</h3>
     <div id="calories">
+        <h2>Calories</h2>
         <p id="totalDailyCalories">0</p>
         <input id="inputCalories" type="number" />
         <button id="addCaloriesBtn">+</button>
     </div>
     <div id="water">
+        <h2>Water</h2>
         <p id="totalDailyWater">0</p>
         <input id="inputWater" type="number" />
         <button id="addWaterBtn">+</button>
     </div>
+
+    <script>
+        let totalDailyCalories = document.querySelector('#totalDailyCalories');
+        let inputCalories = document.querySelector('#inputCalories');
+        let addCaloriesBtn = document.querySelector('#addCaloriesBtn');
+        let totalDailyWater = document.querySelector('#totalDailyWater');
+        let inputWater = document.querySelector('#inputWater');
+        let addWaterBtn = document.querySelector('#addWaterBtn');
+
+        addCaloriesBtn.onclick = () =>{
+            let input = Number(inputCalories.value);
+            let current = Number(totalDailyCalories.innerText);
+            totalDailyCalories.innerText = current + input;
+            inputCalories.value = '';
+        };
+        addWaterBtn.onclick = () =>{
+            let input = Number(inputWater.value);
+            let current = Number(totalDailyWater.innerText);
+            totalDailyWater.innerText = current + input;
+            inputWater.value = '';
+        };
+    </script>
 </body>
 </html>
