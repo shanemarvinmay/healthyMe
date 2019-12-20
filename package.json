@@ -1,0 +1,26 @@
+{
+  "name": "healthyme",
+  "version": "1.0.0",
+  "description": "my fitness app",
+  "main": "index.js",
+  "scripts": {
+    "test": "console.log('test cmd')",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shanemarvinmay/healthyMe.git"
+  },
+  "keywords": [
+    "healthyMe"
+  ],
+  "author": "shanemarvinmay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shanemarvinmay/healthyMe/issues"
+  },
+  "homepage": "https://github.com/shanemarvinmay/healthyMe#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
