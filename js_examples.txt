@@ -1,0 +1,9 @@
+day.date = new Date();
+day.date.setDate(1);
+checkCookie();
+
+let date = new Date("Sun Dec 01 2019 10:24:57 GMT-0600 (Central Standard Time)");
+
+date.toString();
+
+date = new Date(date);
