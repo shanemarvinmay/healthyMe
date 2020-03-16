@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/healthyMe/static/css/main.5f361e03.chunk.css",
-    "main.js": "/healthyMe/static/js/main.13870fc9.chunk.js",
-    "main.js.map": "/healthyMe/static/js/main.13870fc9.chunk.js.map",
+    "main.js": "/healthyMe/static/js/main.bab599d6.chunk.js",
+    "main.js.map": "/healthyMe/static/js/main.bab599d6.chunk.js.map",
     "runtime-main.js": "/healthyMe/static/js/runtime-main.565cfa41.js",
     "runtime-main.js.map": "/healthyMe/static/js/runtime-main.565cfa41.js.map",
-    "static/js/2.88942a30.chunk.js": "/healthyMe/static/js/2.88942a30.chunk.js",
-    "static/js/2.88942a30.chunk.js.map": "/healthyMe/static/js/2.88942a30.chunk.js.map",
+    "static/js/2.9bf8844b.chunk.js": "/healthyMe/static/js/2.9bf8844b.chunk.js",
+    "static/js/2.9bf8844b.chunk.js.map": "/healthyMe/static/js/2.9bf8844b.chunk.js.map",
     "index.html": "/healthyMe/index.html",
-    "precache-manifest.57be1f8e0b7466cbf75b11014ddb88f0.js": "/healthyMe/precache-manifest.57be1f8e0b7466cbf75b11014ddb88f0.js",
+    "precache-manifest.8f57662bce03fcc11ee9be47da66290a.js": "/healthyMe/precache-manifest.8f57662bce03fcc11ee9be47da66290a.js",
     "service-worker.js": "/healthyMe/service-worker.js",
     "static/css/main.5f361e03.chunk.css.map": "/healthyMe/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.88942a30.chunk.js.LICENSE.txt": "/healthyMe/static/js/2.88942a30.chunk.js.LICENSE.txt",
+    "static/js/2.9bf8844b.chunk.js.LICENSE.txt": "/healthyMe/static/js/2.9bf8844b.chunk.js.LICENSE.txt",
     "static/media/logo.svg": "/healthyMe/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.565cfa41.js",
-    "static/js/2.88942a30.chunk.js",
+    "static/js/2.9bf8844b.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.13870fc9.chunk.js"
+    "static/js/main.bab599d6.chunk.js"
   ]
 }
