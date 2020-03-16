@@ -3,10 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 
 import Auth from './components/Auth';
+import MainMenu from './components/MainMenu';
 
 function App() {
   const [user,setUser] = useState({auth:false,choice:null});
   let screen = null;
+  console.log(user.choice);
   if(user.auth == false){
     screen = <Auth auth={ ()=>setUser({auth:true}) } />;
   }
@@ -20,7 +22,7 @@ function App() {
     screen = <h1>water</h1>;
   }
   else {
-    screen = <h1>main menu</h1>;
+    screen = <MainMenu choice={(choice)=>setUser({auth:true,choice:choice})}/>;
   }
   return (
     <div className="App">
