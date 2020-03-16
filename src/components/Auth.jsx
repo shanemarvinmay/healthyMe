@@ -10,7 +10,7 @@ let Auth = (props) => {
             <h1>Login</h1>
             <input />
             <input />
-            <button>login</button>
+            <button onClick={()=>props.auth()}>login</button>
         </div>
       {/* <p>You clicked {count} times</p>
       <button onClick={() => setCount(count + 1)}>
