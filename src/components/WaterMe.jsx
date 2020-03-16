@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 let handleInput = (e, setWater = ()=>{}) => {
-    if(e.keyCode == 13){
+    if(e.keyCode == 13 && e.target.value.length > 0){
         console.log('enter was pressed');
         let num = parseFloat(e.target.value)
         setWater(num);
