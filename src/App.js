@@ -4,6 +4,7 @@ import './App.css';
 
 import Auth from './components/Auth';
 import MainMenu from './components/MainMenu';
+import WaterMe from './components/WaterMe';
 
 function App() {
   const [user,setUser] = useState({auth:false,choice:null});
@@ -19,7 +20,7 @@ function App() {
     screen = <h1>nutrion</h1>;
   }
   else if(user.choice == "water"){
-    screen = <h1>water</h1>;
+    screen = <WaterMe />;
   }
   else {
     screen = <MainMenu choice={(choice)=>setUser({auth:true,choice:choice})}/>;
